@@ -1,0 +1,14 @@
+#!/bin/bash
+#test script for Lab1
+
+#fire up both server and client.do this only after a make myclient and make myserver have been run
+myserver 1234&
+cd ..
+cd CLI
+myclient 127.0.0.1 1234 test.txt
+myclient 127.0.0.1 1234 test2.txt
+myclient 127.0.0.1 1234 test3.txt
+myclient 127.0.0.1 1234 test4.txt
+myclient 127.0.0.1 1234 test5.txt
+myclient 127.0.0.1 1234 test6.txt
+#now to test the rest of the test files.

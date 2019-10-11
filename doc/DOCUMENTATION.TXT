@@ -1,0 +1,38 @@
+For this lab we were required to make a concurrent client to multiple servers with UDP instead of TCP. 
+in order to myserver and client run 
+make sure you are in the correct directory
+
+
+1ST:
+	type 
+	myserver 1234 
+	in one instance of terminal
+
+2nd: 
+	type myclient 127.0.0.1 1234 <filename.txt> 
+	into another instance of a terminal 
+
+--Extra 
+When trying to grab a new file to download its best to do the 2nd step again. 
+
+now that both are running. it should go grab the filesize and then start the download. 
+
+the process of how this works is that the client checks for the proper ammount of arguments 
+then it requests a filesize on the file passed to it through argv
+the client writes a 0 to the server telling it that it wants to check the file size.
+the server then responds in fashion with the filesize of the file in bytes. 
+
+next the client calls the downloadfunction()
+this function should set a flag and send a 1 to the server. 
+the server makes sure that the file pointer is being accessed through the select() function call. This will allow it to receive data from the client about what it needs to do
+when the server processes this it realizes it doesnt need to give it the filesize, but rather just the information in the file itself. 
+it goes into the file reads through it and copies it to a buffer 
+once that is all done it is time to send the buffer with the information in the text files again to the client where he will put it together. 
+it sends and on the client side it also does a select to make sure that the socketfd is being listened to. once it notices a change it accepts the data from the server and then pieces it back together 
+using a call to fopen passing it the name of the file through argv[3] and writes a copy in the cli folder.
+
+in the end the client signs off and clears the connections.
+
+
+
+

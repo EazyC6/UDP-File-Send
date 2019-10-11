@@ -1,0 +1,27 @@
+Files:
+myserver.c  //the c file with the code for the server
+myclient.c  //the c file with the code for the client 
+test.txt // a test file 
+test2.txt //a test file
+test3.txt // a test file 
+test4.txt // a test file 
+test5.txt // a test file
+test6.txt // a test file 
+ 
+-- what works
+What works in this implementation is using udp in order to get the files to send across the network.
+The program on the client side gets the filesize first, then pages the server for the data inside the file
+to transfer across the network. the client will then write to a file of the same name on the client side. 
+
+error checking for most of the system calls. 
+
+If you run the test script it goes and grabs all the test files and downloads them to the client. 
+
+-- the issues 
+it is still not concurrent. 
+
+it may be an issue but when passsed a file that doesnt exists the server  wont poll the client side for a new file. it will just print an error message saying please enter a new file. and the client will create a new file on its side titled whatever you inputted
+
+downloading filesizes bigger than 100 bytes causes issues to happen but it works for anything under it. 
+
+the downloaded file  will have some extra characters in the file but the output on the client side will tell you its getting it correctly. just something to take not of.
